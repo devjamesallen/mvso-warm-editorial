@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVSO — Miami Valley Symphony Orchestra</title>
+<meta name="description" content="Miami Valley Symphony Orchestra — Entertain. Enrich. Inspire. Live orchestral music in Dayton, Ohio.">
+
+<!-- Open Graph / Link Preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mvso-warm-editorial.vercel.app/">
+<meta property="og:title" content="MVSO — Miami Valley Symphony Orchestra">
+<meta property="og:description" content="Where Music Becomes Alive. Seventy musicians, one shared purpose. Live orchestral performances in Dayton, Ohio.">
+<meta property="og:image" content="https://mvso-warm-editorial.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MVSO — Miami Valley Symphony Orchestra">
+<meta name="twitter:description" content="Where Music Becomes Alive. Live orchestral performances in Dayton, Ohio.">
+<meta name="twitter:image" content="https://mvso-warm-editorial.vercel.app/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════ RESET ═══════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  /* WARM EDITORIAL PALETTE */
+  --terracotta: #C65D3B;
+  --terracotta-light: #D97548;
+  --burgundy: #6B2D3E;
+  --burgundy-dark: #4A1D2A;
+  --olive: #5A6340;
+  --olive-light: #7A8355;
+  --sand: #E8DCC8;
+  --sand-light: #F5F0E6;
+  --chocolate: #2C1810;
+  --cream: #FAF6F0;
+  --parchment: #F5EFE7;
+  --warm-gray: #9B8B7E;
+
+  /* TEXT COLORS */
+  --dark-text: #2C1810;
+  --mid-text: #5A4A42;
+  --light-text: #8B7D6F;
+
+  /* SERIF & SANS FONTS */
+  --serif-display: 'Playfair Display', Georgia, serif;
+  --serif-body: 'Lora', 'Source Serif Pro', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+}
+
+/* ═══════════════ SHEET MUSIC ACCENTS ═══════════════ */
+.staff-bg {
+  position: relative;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(198, 93, 59, 0.04) 0px,
+    rgba(198, 93, 59, 0.04) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+  background-size: 100% 60px;
+  background-position: 0 0;
+}
+.staff-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 48px,
+    rgba(198, 93, 59, 0.025) 48px,
+    rgba(198, 93, 59, 0.025) 49px
+  );
+  pointer-events: none;
+}
+
+.treble-wm::after {
+  content: '𝄞';
+  position: absolute;
+  font-size: 18rem;
+  opacity: 0.03;
+  color: rgba(198, 93, 59, 0.3);
+  pointer-events: none;
+  font-family: Georgia, serif;
+}
+
+.divider-note-sym {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+}
+.divider-note-sym::before,
+.divider-note-sym::after {
+  content: '';
+  width: 70px;
+  height: 1px;
+}
+.dark-section .divider-note-sym::before,
+.dark-section .divider-note-sym::after {
+  background: linear-gradient(90deg, transparent, rgba(198, 93, 59, 0.12));
+}
+.dark-section .divider-note-sym::after {
+  background: linear-gradient(90deg, rgba(198, 93, 59, 0.12), transparent);
+}
+.light-section .divider-note-sym::before,
+.light-section .divider-note-sym::after {
+  background: linear-gradient(90deg, transparent, rgba(198, 93, 59, 0.1));
+}
+.light-section .divider-note-sym::after {
+  background: linear-gradient(90deg, rgba(198, 93, 59, 0.1), transparent);
+}
+
+.note-sym {
+  font-size: 1.1rem;
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+.dark-section .note-sym {
+  color: var(--terracotta);
+}
+.light-section .note-sym {
+  color: var(--terracotta);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--serif-body);
+  background: var(--cream);
+  color: var(--dark-text);
+  overflow-x: hidden;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--terracotta); color: var(--cream); }
+a { color: var(--terracotta); text-decoration: none; transition: all 0.35s; }
+a:hover { color: var(--burgundy); }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════ LOADER ═══════════════ */
+#loader {
+  position: fixed; inset: 0; z-index: 10000;
+  background: var(--cream);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+#loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+#loader .l-name {
+  font-family: var(--serif-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--terracotta);
+  opacity: 0; animation: lIn 0.8s 0.2s forwards;
+}
+#loader .l-bar {
+  width: 100px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
+  margin-top: 1.5rem; opacity: 0;
+  animation: lIn 0.6s 0.6s forwards, lPulse 1.5s 0.6s infinite;
+}
+@keyframes lIn { to { opacity: 1 } }
+@keyframes lPulse { 0%,100% { opacity:.3; transform:scaleX(.5) } 50% { opacity:1; transform:scaleX(1) } }
+
+/* ═══════════════ PAGE SYSTEM ═══════════════ */
+.page { display:none; opacity:0; transition: opacity .6s ease; }
+.page.active { display:block; }
+.page.vis { opacity:1; }
+
+/* ═══════════════ NAV ═══════════════ */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:9000;
+  padding: 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: transparent;
+  transition: all 0.5s;
+}
+nav.scrolled {
+  background: rgba(250,246,240,0.95);
+  backdrop-filter: blur(25px);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 15px rgba(198,93,59,0.08);
+}
+
+/* When on a light page, nav gets dark text until scrolled */
+nav.light-mode:not(.scrolled) { background: rgba(250,246,240,0.9); backdrop-filter: blur(10px); }
+nav.light-mode:not(.scrolled) .nav-logo { color: var(--dark-text); }
+nav.light-mode:not(.scrolled) .nav-links a,
+nav.light-mode:not(.scrolled) .nav-links .ndrop-btn { color: var(--mid-text); }
+nav.light-mode:not(.scrolled) .hamburger span { background: var(--dark-text); }
+
+.nav-logo {
+  font-family: var(--serif-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--terracotta);
+  cursor: pointer;
+}
+
+.nav-links { display:flex; align-items:center; gap:0; list-style:none; }
+
+.nav-links a, .nav-links .ndrop-btn {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(44,24,16,0.65);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: all 0.35s;
+  background: none; border: none;
+  position: relative;
+}
+.nav-links a::after {
+  content:''; position:absolute;
+  bottom:0.2rem; left:50%; right:50%;
+  height:2px; background: var(--terracotta);
+  transition: all 0.35s;
+}
+.nav-links a:hover, .nav-links .ndrop-btn:hover { color: var(--terracotta); }
+.nav-links a:hover::after { left:1rem; right:1rem; }
+.nav-links a.active { color: var(--terracotta); }
+.nav-links a.active::after { left:1rem; right:1rem; }
+
+/* Dropdown */
+.ndrop { position:relative; }
+.ndrop-menu {
+  position:absolute; top:calc(100% + .5rem); left:50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(250,246,240,0.98);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(198,93,59,0.15);
+  border-radius: 8px;
+  padding: 0.8rem 0; min-width: 200px;
+  opacity:0; visibility:hidden;
+  transition: all 0.3s;
+  box-shadow: 0 10px 40px rgba(44,24,16,0.12);
+}
+.ndrop:hover .ndrop-menu { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+.ndrop-menu a { display:block!important; padding:.7rem 1.4rem!important; font-size:.7rem!important; color:rgba(44,24,16,.6)!important; letter-spacing:.12em!important; }
+.ndrop-menu a::after { display:none!important; }
+.ndrop-menu a:hover { color:var(--terracotta)!important; background:rgba(198,93,59,.06); }
+
+.nav-cta {
+  margin-left:.8rem;
+  padding: .6rem 1.6rem!important;
+  background: var(--terracotta)!important;
+  color: var(--cream)!important;
+  border-radius: 3px;
+  font-weight: 700!important;
+  letter-spacing: .18em!important;
+}
+.nav-cta::after { display:none!important; }
+.nav-cta:hover { background: var(--burgundy)!important; transform: translateY(-1px); box-shadow: 0 8px 25px rgba(198,93,59,.2); }
+
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:9001; background:none; border:none; padding:.5rem; }
+.hamburger span { display:block; width:24px; height:1.5px; background:var(--terracotta); transition:all .3s; }
+.hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(4px,4px); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(4px,-4px); }
+
+/* ═══════════════ BUTTONS ═══════════════ */
+.btn {
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  border: none; cursor: pointer;
+  transition: all 0.4s;
+  text-decoration: none;
+  border-radius: 3px;
+}
+.btn-crimson { background:var(--terracotta); color:var(--cream); }
+.btn-crimson:hover { background:var(--burgundy); color:var(--cream); transform:translateY(-2px); box-shadow:0 12px 35px rgba(198,93,59,.25); }
+.btn-gold { background:var(--olive); color:var(--cream); }
+.btn-gold:hover { background:var(--olive-light); color:var(--cream); transform:translateY(-2px); box-shadow:0 12px 35px rgba(90,99,64,.25); }
+.btn-dark { background:var(--dark-text); color:var(--cream); }
+.btn-dark:hover { background:var(--burgundy); color:var(--cream); transform:translateY(-2px); }
+.btn-outline-dark { background:transparent; color:var(--dark-text); border:1.5px solid var(--dark-text); }
+.btn-outline-dark:hover { background:var(--dark-text); color:var(--cream); transform:translateY(-2px); }
+.btn-outline-light { background:transparent; color:rgba(250,246,240,.9); border:1.5px solid rgba(250,246,240,.4); }
+.btn-outline-light:hover { border-color:var(--sand); color:var(--sand); transform:translateY(-2px); }
+.btn-arrow::after { content:' →'; transition: transform .3s; }
+
+/* ═══════════════ LAYOUT ═══════════════ */
+.container { max-width:1140px; margin:0 auto; padding:0 2rem; }
+.container-sm { max-width:800px; margin:0 auto; padding:0 2rem; }
+
+/* ═══════════════ DARK SECTIONS ═══════════════ */
+.dark-section {
+  background: var(--chocolate);
+  color: var(--sand-light);
+  padding: 6rem 0;
+}
+.dark-section .label { color: var(--terracotta); }
+.dark-section .heading { color: var(--sand-light); }
+.dark-section .body-text { color: rgba(248,240,230,.65); }
+
+/* ═══════════════ LIGHT SECTIONS ═══════════════ */
+.light-section {
+  background: var(--parchment);
+  color: var(--dark-text);
+  padding: 6rem 0;
+}
+.cream-section {
+  background: var(--sand-light);
+  color: var(--dark-text);
+  padding: 6rem 0;
+}
+.white-section {
+  background: var(--cream);
+  color: var(--dark-text);
+  padding: 6rem 0;
+}
+
+/* ═══════════════ TYPOGRAPHY ═══════════════ */
+.label {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1.2rem;
+}
+
+.heading {
+  font-family: var(--serif-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  color: var(--dark-text);
+}
+.heading em { font-style:italic; }
+
+.dark-section .heading { color: var(--sand-light); }
+
+.subheading {
+  font-family: var(--serif-body);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8;
+  max-width: 600px;
+}
+.dark-section .subheading { color: rgba(248,240,230,.6); }
+.light-section .subheading, .cream-section .subheading { color: var(--mid-text); }
+
+.prose {
+  font-family: var(--serif-body);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--mid-text);
+}
+.prose p { margin-bottom: 1.8rem; }
+.prose strong { color: var(--dark-text); font-weight: 600; }
+.prose p:first-letter { font-size: 1.8em; font-weight: 700; float: left; line-height: 1; padding-right: 0.4rem; color: var(--terracotta); }
+
+.dark-section .prose { color: rgba(248,240,230,.6); }
+.dark-section .prose strong { color: var(--sand-light); }
+
+/* ═══════════════ HERO — CINEMATIC DUAL VIDEO ═══════════════ */
+.hero {
+  position: relative;
+  height: 100vh; min-height: 650px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.hero-video-layer {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  transition: opacity 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hero-video-layer.hidden { opacity: 0; }
+.hero-video-layer.visible { opacity: 1; }
+
+.hero-video-layer video {
+  position: absolute;
+  top:50%; left:50%;
+  min-width:100%; min-height:100%;
+  width:177.78vh; height:100vh;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  object-fit: cover;
+}
+
+/* Progress bar for video transition */
+.hero-progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: var(--terracotta);
+  z-index: 5;
+  width: 0%;
+  transition: width 0.3s linear;
+  opacity: 0.6;
+}
+
+/* Video label indicator */
+.hero-video-label {
+  position: absolute;
+  bottom: 5rem; right: 2.5rem;
+  z-index: 4;
+  font-family: var(--sans);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(198,93,59,0.45);
+  transition: opacity 0.8s;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hero-video-label::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  opacity: 0.6;
+  animation: labelPulse 2s infinite;
+}
+@keyframes labelPulse { 0%,100%{opacity:.4} 50%{opacity:.9} }
+
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg,
+      rgba(250,246,240,0.35) 0%,
+      rgba(232,220,200,0.2) 35%,
+      rgba(232,220,200,0.2) 55%,
+      rgba(217,117,72,0.35) 100%
+    );
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  max-width: 850px;
+  padding: 0 2rem;
+}
+
+.hero-label {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1.8rem;
+  opacity:0; animation: hReveal 1s .8s forwards;
+}
+.hero-title {
+  font-family: var(--serif-display);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--dark-text);
+  margin-bottom: .4em;
+  opacity:0; animation: hReveal 1.2s 1s forwards;
+}
+.hero-title em { font-style:italic; color:var(--terracotta); }
+.hero-line {
+  width:60px; height:2px;
+  background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
+  margin: 1.5rem auto;
+  opacity:0; animation: hReveal .8s 1.3s forwards;
+}
+.hero-sub {
+  font-family: var(--serif-body);
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--mid-text);
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+  opacity:0; animation: hReveal 1s 1.5s forwards;
+}
+.hero-btns {
+  display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;
+  opacity:0; animation: hReveal .8s 1.8s forwards;
+}
+@keyframes hReveal { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-scroll {
+  position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:.8rem;
+  opacity:0; animation: hReveal .8s 2.2s forwards;
+}
+.hero-scroll span { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(198,93,59,.5); font-weight:600; }
+.hero-scroll .sline { width:1.5px; height:35px; background:linear-gradient(180deg,var(--terracotta),transparent); animation: sPulse 2s infinite; }
+@keyframes sPulse { 0%{opacity:1;transform:scaleY(1)} 50%{opacity:.3;transform:scaleY(.5)} 100%{opacity:1;transform:scaleY(1)} }
+
+/* ═══════════════ EVENT CARDS ═══════════════ */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.event-card {
+  background: var(--cream);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: all .4s;
+  box-shadow: 0 4px 20px rgba(44,24,16,.08);
+}
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 45px rgba(198,93,59,.15);
+}
+
+.event-card-img {
+  height: 220px;
+  background: linear-gradient(135deg, var(--terracotta), var(--olive));
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(250, 246, 240, 0.08) 0px,
+      rgba(250, 246, 240, 0.08) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    linear-gradient(135deg, var(--terracotta), var(--olive));
+  background-size: 100% 60px, 100% 100%;
+  background-position: 0 0, 0 0;
+}
+.event-card-img .event-icon {
+  font-family: var(--serif-display);
+  font-size: 4.5rem;
+  color: rgba(250,246,240,.15);
+  font-weight: 400;
+}
+
+.event-card-body {
+  padding: 2rem;
+}
+
+.event-card-date {
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--light-text);
+  margin-bottom: .8rem;
+}
+
+.event-card-title {
+  font-family: var(--serif-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  line-height: 1.25;
+  margin-bottom: .6rem;
+}
+
+.event-card-venue {
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--light-text);
+  margin-bottom: 1.8rem;
+}
+
+.event-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ═══════════════ STATS ROW ═══════════════ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(198,93,59,.1);
+  border-bottom: 1px solid rgba(198,93,59,.1);
+}
+.stat-item {
+  text-align: center;
+  padding: 3.5rem 1rem;
+  border-right: 1px solid rgba(198,93,59,.08);
+}
+.stat-item:last-child { border-right:none; }
+.stat-num {
+  font-family: var(--serif-display);
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--terracotta);
+  line-height: 1;
+}
+.stat-text {
+  font-family: var(--sans);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: rgba(248,240,230,.4);
+  margin-top: .9rem;
+}
+
+/* ═══════════════ SPLIT LAYOUT ═══════════════ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.visual-box {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.visual-box-bg {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(198, 93, 59, 0.035) 0px,
+      rgba(198, 93, 59, 0.035) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    linear-gradient(135deg, rgba(107,45,62,0.8), rgba(90,99,64,0.8));
+  background-size: 100% 60px, 100% 100%;
+  background-position: 0 0, 0 0;
+}
+.visual-box-wm {
+  position: absolute; bottom:-1rem; right:-1rem;
+  font-family: var(--serif-display);
+  font-size: 10rem;
+  font-weight: 700;
+  color: rgba(232,220,200,.05);
+  line-height: .85;
+  pointer-events: none;
+}
+
+/* Light version */
+.visual-box-light .visual-box-bg {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(198, 93, 59, 0.03) 0px,
+      rgba(198, 93, 59, 0.03) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    linear-gradient(135deg, var(--sand), var(--parchment));
+  background-size: 100% 60px, 100% 100%;
+  background-position: 0 0, 0 0;
+}
+.visual-box-light .visual-box-wm { color: rgba(44,24,16,.04); }
+
+/* ═══════════════ FEATURED CONCERT ═══════════════ */
+.featured-banner {
+  position: relative;
+  background: var(--chocolate);
+  overflow: hidden;
+}
+.featured-banner::before {
+  content:''; position:absolute; inset:0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(198,93,59,.08) 0%, transparent 60%);
+}
+.featured-inner {
+  position: relative; z-index:1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 520px;
+}
+.featured-vis {
+  display: flex; align-items: center; justify-content: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(198,93,59,.06), transparent);
+}
+.featured-vis-text { text-align: center; }
+.featured-vis-text .composer {
+  font-family: var(--serif-display);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 600;
+  color: var(--sand-light);
+  line-height: 1.1;
+}
+.featured-vis-text .vs-mark {
+  font-family: var(--serif-display);
+  font-size: 4.5rem;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(198,93,59,.18);
+  line-height: 1.1;
+}
+.featured-body {
+  padding: 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.featured-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--sand);
+  background: var(--terracotta);
+  padding: .4rem 1.1rem;
+  border-radius: 3px;
+  margin-bottom: 1.8rem;
+  align-self: flex-start;
+}
+.featured-title {
+  font-family: var(--serif-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 600;
+  color: var(--sand-light);
+  line-height: 1.25;
+  margin-bottom: .9rem;
+}
+.featured-title em { font-style:italic; color:var(--terracotta); }
+.featured-date-text {
+  font-family: var(--sans);
+  font-size: .8rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(248,240,230,.45);
+  margin-bottom: 1.8rem;
+}
+.featured-date-text strong { color:var(--terracotta); font-weight:700; }
+.featured-desc {
+  font-family: var(--serif-body);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(248,240,230,.6);
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+}
+
+/* ═══════════════ PAGE HERO (inner) ═══════════════ */
+.page-hero-dark {
+  padding: 10rem 0 4rem;
+  background: var(--chocolate);
+  text-align: center;
+  position: relative;
+}
+.page-hero-dark::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(198,93,59,.1), transparent);
+}
+.ph-label { font-family:var(--sans); font-size:.65rem; font-weight:700; letter-spacing:.4em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.3rem; }
+.ph-title { font-family:var(--serif-display); font-size:clamp(2.8rem,6vw,5.5rem); font-weight:600; color:var(--sand-light); line-height:1.1; margin-bottom:1rem; }
+.ph-sub { font-family:var(--serif-body); font-size:1.2rem; font-weight:400; font-style:italic; color:rgba(248,240,230,.45); max-width:450px; margin:0 auto; }
+.ph-line { width:40px; height:2px; background:var(--terracotta); margin:2rem auto 0; }
+
+/* Light page hero */
+.page-hero-light {
+  padding: 10rem 0 4rem;
+  background: var(--parchment);
+  text-align: center;
+}
+.page-hero-light .ph-label { color: var(--terracotta); }
+.page-hero-light .ph-title { color: var(--dark-text); }
+.page-hero-light .ph-sub { color: var(--mid-text); }
+.page-hero-light .ph-line { background: var(--terracotta); }
+
+/* ═══════════════ PROFILES ═══════════════ */
+.profiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2rem; }
+
+.profile-card {
+  padding: 2.8rem 2rem;
+  text-align: center;
+  border-radius: 3px;
+  transition: all .4s;
+}
+/* dark bg version */
+.dark-section .profile-card { background:rgba(232,220,200,.05); border:1px solid rgba(198,93,59,.08); }
+.dark-section .profile-card:hover { border-color:rgba(198,93,59,.2); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,.15); }
+/* light bg version */
+.light-section .profile-card, .cream-section .profile-card { background:var(--cream); box-shadow:0 3px 18px rgba(44,24,16,.06); }
+.light-section .profile-card:hover, .cream-section .profile-card:hover { transform:translateY(-4px); box-shadow:0 15px 40px rgba(198,93,59,.12); }
+
+.profile-init {
+  width:80px; height:80px; border-radius:50%;
+  margin:0 auto 1.4rem;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif-display); font-size:1.5rem; font-weight:600;
+}
+.dark-section .profile-init { border:1.5px solid rgba(198,93,59,.2); color:var(--terracotta); background:rgba(198,93,59,.05); }
+.light-section .profile-init, .cream-section .profile-init { border:1.5px solid var(--sand); color:var(--terracotta); background:var(--sand-light); }
+
+.profile-card h3 { font-family:var(--serif-display); font-size:1.25rem; font-weight:600; margin-bottom:.3rem; }
+.dark-section .profile-card h3 { color:var(--sand-light); }
+
+.profile-card .role {
+  font-family:var(--sans); font-size:.6rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; margin-bottom:1rem;
+}
+.dark-section .profile-card .role { color:var(--terracotta); }
+.light-section .profile-card .role, .cream-section .profile-card .role { color:var(--terracotta); }
+
+.profile-card p { font-family:var(--serif-body); font-size:.95rem; font-weight:400; line-height:1.8; }
+.dark-section .profile-card p { color:rgba(248,240,230,.5); }
+.light-section .profile-card p, .cream-section .profile-card p { color:var(--mid-text); }
+
+/* ═══════════════ TIMELINE ═══════════════ */
+.timeline { position:relative; padding-left:4rem; }
+.timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1.5px; }
+.dark-section .timeline::before { background:linear-gradient(180deg,var(--terracotta),rgba(198,93,59,.08)); }
+.light-section .timeline::before { background:linear-gradient(180deg,var(--terracotta),rgba(198,93,59,.08)); }
+
+.tl-item { position:relative; padding-bottom:4rem; }
+.tl-item::before { content:''; position:absolute; left:-4rem; top:1rem; width:10px; height:10px; border-radius:50%; transform:translateX(-2.5px); }
+.dark-section .tl-item::before { border:2px solid var(--terracotta); background:var(--chocolate); }
+.light-section .tl-item::before { border:2px solid var(--terracotta); background:var(--parchment); }
+.tl-item:hover::before { box-shadow:0 0 15px rgba(198,93,59,.3); }
+
+.tl-year { font-family:var(--serif-display); font-size:2rem; font-weight:600; margin-bottom:.5rem; }
+.dark-section .tl-year { color:var(--terracotta); }
+.light-section .tl-year { color:var(--terracotta); }
+
+.tl-text { font-family:var(--serif-body); font-size:1.05rem; font-weight:400; line-height:1.8; max-width:620px; }
+.dark-section .tl-text { color:rgba(248,240,230,.6); }
+.dark-section .tl-text strong { color:var(--sand-light); font-weight:600; }
+.light-section .tl-text { color:var(--mid-text); }
+.light-section .tl-text strong { color:var(--dark-text); font-weight:600; }
+
+/* ═══════════════ CONCERTS ═══════════════ */
+.concert-row {
+  display:grid; grid-template-columns:120px 1fr auto;
+  align-items:center; gap:2.2rem;
+  padding:2.5rem 0;
+  transition:all .3s;
+}
+.concert-row + .concert-row { border-top:1px solid; }
+.dark-section .concert-row + .concert-row { border-color:rgba(198,93,59,.08); }
+.light-section .concert-row + .concert-row { border-color:rgba(44,24,16,.08); }
+.concert-row:hover { padding-left:1rem; }
+
+.c-date { text-align:center; }
+.c-date .month { font-family:var(--sans); font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; }
+.dark-section .c-date .month { color:var(--terracotta); }
+.light-section .c-date .month { color:var(--terracotta); }
+.c-date .day { font-family:var(--serif-display); font-size:3rem; font-weight:600; line-height:1; }
+.dark-section .c-date .day { color:var(--sand-light); }
+.light-section .c-date .day { color:var(--dark-text); }
+.c-date .year { font-size:.75rem; color:var(--light-text); }
+
+.c-info h3 { font-family:var(--serif-display); font-size:1.4rem; font-weight:600; margin-bottom:.3rem; }
+.dark-section .c-info h3 { color:var(--sand-light); }
+.c-info p { font-family:var(--serif-body); font-size:.98rem; font-weight:400; line-height:1.7; }
+.dark-section .c-info p { color:rgba(248,240,230,.55); }
+.light-section .c-info p { color:var(--mid-text); }
+.c-info .venue { font-family:var(--sans); font-size:.65rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-top:.4rem; }
+.dark-section .c-info .venue { color:rgba(198,93,59,.5); }
+.light-section .c-info .venue { color:var(--light-text); }
+
+.badge { font-family:var(--sans); font-size:.6rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; padding:.4rem 1rem; border-radius:3px; white-space:nowrap; }
+.badge-crimson { background:rgba(198,93,59,.12); color:var(--terracotta); }
+.badge-dim { background:rgba(44,24,16,.06); color:var(--light-text); }
+.dark-section .badge-dim { background:rgba(232,220,200,.05); color:rgba(248,240,230,.35); }
+
+/* ═══════════════ INFO CARDS ═══════════════ */
+.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+
+.info-card { padding:3rem; border-radius:3px; transition:all .4s; }
+.dark-section .info-card { background:rgba(232,220,200,.04); border:1px solid rgba(198,93,59,.08); }
+.light-section .info-card, .cream-section .info-card { background:var(--cream); box-shadow:0 3px 18px rgba(44,24,16,.06); }
+.info-card:hover { transform:translateY(-4px); }
+
+.info-card h3 { font-family:var(--serif-display); font-size:1.35rem; font-weight:600; margin-bottom:1.5rem; }
+.dark-section .info-card h3 { color:var(--sand-light); }
+
+.info-card li {
+  list-style:none; padding:.65rem 0 .65rem 1.4rem;
+  position:relative;
+  font-family:var(--serif-body); font-size:.98rem; font-weight:400;
+}
+.info-card li + li { border-top:1px solid rgba(44,24,16,.05); }
+.dark-section .info-card li + li { border-color:rgba(198,93,59,.06); }
+.dark-section .info-card li { color:rgba(248,240,230,.55); }
+.light-section .info-card li { color:var(--mid-text); }
+.info-card li::before {
+  content:''; position:absolute; left:0; top:50%;
+  width:5px; height:5px; border-radius:50%; transform:translateY(-50%);
+}
+.dark-section .info-card li::before { background:var(--terracotta); }
+.light-section .info-card li::before { background:var(--terracotta); }
+
+/* ═══════════════ DONATE TIERS ═══════════════ */
+.tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+.tier {
+  padding:3.5rem 2.5rem; text-align:center; border-radius:3px;
+  transition:all .4s; position:relative; overflow:hidden;
+}
+.light-section .tier { background:var(--cream); box-shadow:0 3px 18px rgba(44,24,16,.06); }
+.tier.hl { border:2px solid var(--terracotta); }
+.tier.hl::before {
+  content:'POPULAR'; position:absolute; top:1rem; right:-2rem;
+  background:var(--terracotta); color:var(--cream);
+  font-size:.5rem; font-weight:800; letter-spacing:.15em;
+  padding:.3rem 2.8rem; transform:rotate(45deg);
+}
+.tier:hover { transform:translateY(-8px); box-shadow:0 20px 50px rgba(198,93,59,.15); }
+.tier h3 { font-family:var(--serif-display); font-size:1.3rem; font-weight:600; color:var(--dark-text); }
+.tier .amount { font-family:var(--serif-display); font-size:3.5rem; font-weight:600; color:var(--terracotta); margin:1rem 0; }
+.tier p { font-family:var(--serif-body); font-size:.98rem; font-weight:400; color:var(--mid-text); line-height:1.8; margin-bottom:2.2rem; }
+
+/* ═══════════════ CTA BANNER ═══════════════ */
+.cta-box {
+  padding:3rem 3.5rem; border-radius:3px;
+  text-align:center; margin-top:3.5rem;
+}
+.dark-section .cta-box { background:rgba(232,220,200,.04); border:1px solid rgba(198,93,59,.08); }
+.light-section .cta-box, .cream-section .cta-box { background:var(--sand-light); }
+.cta-box h3 { font-family:var(--serif-display); font-size:1.5rem; font-weight:600; margin-bottom:.6rem; }
+.dark-section .cta-box h3 { color:var(--sand-light); }
+.cta-box p { font-family:var(--serif-body); font-size:.98rem; font-weight:400; margin-bottom:2rem; max-width:500px; margin-left:auto; margin-right:auto; }
+.dark-section .cta-box p { color:rgba(248,240,230,.55); }
+.light-section .cta-box p, .cream-section .cta-box p { color:var(--mid-text); }
+
+/* ═══════════════ QUOTE ═══════════════ */
+.quote-block { padding:6rem 0; text-align:center; }
+.quote-block blockquote {
+  font-family:var(--serif-display); font-size:clamp(1.6rem,3.5vw,2.5rem);
+  font-weight:500; font-style:italic; line-height:1.6;
+  max-width:700px; margin:0 auto;
+}
+.dark-section .quote-block blockquote { color:var(--sand-light); }
+.light-section .quote-block blockquote { color:var(--dark-text); }
+.quote-block blockquote::before {
+  content:'\201C'; display:block;
+  font-family:var(--serif-display); font-size:4.5rem; line-height:.6; margin-bottom:1.2rem;
+}
+.dark-section .quote-block blockquote::before { color:var(--terracotta); }
+.light-section .quote-block blockquote::before { color:var(--terracotta); }
+.quote-block cite {
+  display:block; font-family:var(--sans); font-style:normal;
+  font-size:.7rem; letter-spacing:.3em; text-transform:uppercase;
+  margin-top:2rem;
+}
+.dark-section .quote-block cite { color:var(--terracotta); }
+.light-section .quote-block cite { color:var(--terracotta); }
+
+/* ═══════════════ DIVIDER ═══════════════ */
+.divider { display:flex; align-items:center; justify-content:center; gap:1.5rem; padding:0; }
+.divider::before,.divider::after { content:''; width:70px; height:1px; }
+.dark-section .divider::before,.dark-section .divider::after { background:linear-gradient(90deg,transparent,rgba(198,93,59,.15)); }
+.dark-section .divider::after { background:linear-gradient(90deg,rgba(198,93,59,.15),transparent); }
+.light-section .divider::before,.light-section .divider::after { background:linear-gradient(90deg,transparent,rgba(198,93,59,.12)); }
+.light-section .divider::after { background:linear-gradient(90deg,rgba(198,93,59,.12),transparent); }
+.divider-dot { width:6px; height:6px; transform:rotate(45deg); flex-shrink:0; }
+.dark-section .divider-dot { background:var(--terracotta); }
+.light-section .divider-dot { background:var(--terracotta); }
+
+/* ═══════════════ MUSICIANS ═══════════════ */
+.inst-group { margin-bottom:3rem; }
+.inst-group h3 { font-family:var(--serif-display); font-size:1.3rem; font-weight:600; padding-bottom:.8rem; margin-bottom:1rem; }
+.dark-section .inst-group h3 { color:var(--terracotta); border-bottom:1.5px solid rgba(198,93,59,.12); }
+.light-section .inst-group h3 { color:var(--terracotta); border-bottom:1.5px solid var(--sand); }
+.inst-group .members { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:.4rem; }
+.inst-group .member { font-family:var(--serif-body); font-size:.95rem; font-weight:400; padding:.5rem 0; }
+.dark-section .inst-group .member { color:rgba(248,240,230,.55); }
+.light-section .inst-group .member { color:var(--mid-text); }
+.member .tag { font-family:var(--sans); font-size:.55rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-left:.5rem; }
+.dark-section .member .tag { color:var(--terracotta); }
+.light-section .member .tag { color:var(--terracotta); }
+
+/* ═══════════════ MAIL ═══════════════ */
+.mail-section { padding:6rem 0; text-align:center; }
+.mail-form { display:flex; gap:0; max-width:500px; margin:2rem auto 0; }
+.mail-form input {
+  flex:1; padding:1rem 1.5rem;
+  font-family:var(--sans); font-size:.85rem;
+  outline:none; transition:all .3s;
+  border-radius:3px 0 0 3px;
+}
+.dark-section .mail-form input {
+  background:rgba(232,220,200,.06); border:1.5px solid rgba(198,93,59,.15); border-right:none;
+  color:var(--sand-light);
+}
+.dark-section .mail-form input:focus { border-color:var(--terracotta); background:rgba(232,220,200,.1); }
+.dark-section .mail-form input::placeholder { color:rgba(248,240,230,.3); }
+.light-section .mail-form input {
+  background:var(--cream); border:1.5px solid var(--sand); border-right:none;
+  color:var(--dark-text);
+}
+.light-section .mail-form input:focus { border-color:var(--terracotta); background:var(--parchment); }
+.light-section .mail-form input::placeholder { color:var(--light-text); }
+.mail-form button {
+  padding:1rem 2rem; border:none; cursor:pointer;
+  font-family:var(--sans); font-size:.7rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase;
+  border-radius:0 3px 3px 0; transition:all .3s;
+  background:var(--terracotta); color:var(--cream);
+}
+.mail-form button:hover { background:var(--burgundy); }
+
+/* ═══════════════ FOOTER ═══════════════ */
+footer { background:var(--chocolate); border-top:1px solid rgba(198,93,59,.1); padding:6rem 0 2.5rem; color:var(--sand-light); }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:4rem; margin-bottom:4rem; }
+.footer-brand h3 { font-family:var(--serif-display); font-size:1.5rem; font-weight:600; color:var(--sand-light); margin-bottom:1rem; line-height:1.3; }
+.footer-brand p { font-family:var(--serif-body); font-size:.95rem; font-weight:400; color:rgba(248,240,230,.4); line-height:1.8; max-width:320px; }
+.footer-col h4 { font-family:var(--sans); font-size:.65rem; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.5rem; }
+.footer-col a { display:block; font-family:var(--serif-body); font-size:.95rem; font-weight:400; color:rgba(248,240,230,.4); padding:.35rem 0; transition:color .3s; }
+.footer-col a:hover { color:var(--terracotta); }
+.footer-bottom { padding-top:2.5rem; border-top:1px solid rgba(198,93,59,.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; }
+.footer-bottom p { font-family:var(--sans); font-size:.75rem; color:rgba(248,240,230,.25); letter-spacing:.04em; }
+.footer-bottom a { color:var(--terracotta); }
+
+/* ═══════════════ SCROLL REVEAL ═══════════════ */
+.rv { opacity:0; transform:translateY(30px); transition:opacity .8s ease, transform .8s ease; }
+.rv.vis { opacity:1; transform:translateY(0); }
+.rv-d1 { transition-delay:.1s; }
+.rv-d2 { transition-delay:.2s; }
+.rv-d3 { transition-delay:.3s; }
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media(max-width:900px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .nav-links.open {
+    display:flex; flex-direction:column;
+    position:fixed; inset:0;
+    background:rgba(250,246,240,.98);
+    justify-content:center; align-items:center;
+    gap:.6rem; z-index:9000;
+  }
+  .nav-links.open a,.nav-links.open .ndrop-btn { font-size:.9rem!important; padding:.8rem!important; color:rgba(44,24,16,.7)!important; }
+  .ndrop-menu { position:static!important; opacity:1!important; visibility:visible!important; transform:none!important; background:transparent!important; border:none!important; box-shadow:none!important; min-width:auto!important; padding:0!important; }
+  .nav-cta { margin-left:0!important; margin-top:1rem; }
+  .split { grid-template-columns:1fr; gap:3rem; }
+  .featured-inner { grid-template-columns:1fr; }
+  .featured-vis { min-height:250px; }
+  .info-grid { grid-template-columns:1fr; }
+  .stats-row { grid-template-columns:1fr 1fr; }
+  .tiers { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .concert-row { grid-template-columns:100px 1fr; }
+  .concert-row .badge { grid-column:1/-1; justify-self:start; }
+  .events-grid { grid-template-columns:1fr; }
+}
+@media(max-width:600px) {
+  nav { padding:1rem 1.5rem; }
+  .container { padding:0 1.5rem; }
+  .hero-title { font-size:clamp(2rem,6vw,3rem); }
+  .heading { font-size:clamp(1.6rem,4vw,2.5rem); }
+  .split { gap:2rem; }
+  .stats-row { grid-template-columns:1fr; gap:0; }
+  .stat-item { padding:2.5rem 1rem; border-right:none!important; border-bottom:1px solid rgba(198,93,59,.1); }
+  .stat-item:last-child { border-bottom:none; }
+  .info-grid { gap:1.5rem; }
+  .tiers { gap:1.5rem; }
+  .footer-grid { gap:2rem; }
+  .mail-form { flex-direction:column; }
+  .mail-form input { border-radius:3px 3px 0 0; border-right:1.5px solid var(--sand); }
+  .mail-form button { border-radius:0 0 3px 3px; }
+  .events-grid { gap:1.5rem; }
+  .profiles { gap:1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader"><div class="l-name">MVSO</div><div class="l-bar"></div></div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="go('home')">MVSO</div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="go('home')" data-page="home" class="active">Home</a></li>
+    <li class="ndrop">
+      <button class="ndrop-btn">About &#9662;</button>
+      <div class="ndrop-menu">
+        <a href="#" onclick="go('about')">About MVSO</a>
+        <a href="#" onclick="go('conductors')">Conductors</a>
+        <a href="#" onclick="go('musicians')">Musicians</a>
+        <a href="#" onclick="go('history')">Our History</a>
+      </div>
+    </li>
+    <li><a href="#" onclick="go('performances')" data-page="performances">Performances</a></li>
+    <li><a href="#" onclick="go('auditions')" data-page="auditions">Auditions</a></li>
+    <li><a href="#" onclick="go('youth')" data-page="youth">Youth</a></li>
+    <li><a href="#" onclick="go('support')" data-page="support" class="nav-cta">Support Us</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HOME
+     ═══════════════════════════════════════════ -->
+<div id="page-home" class="page active vis">
+
+  <!-- HERO (DUAL VIDEO CROSSFADE) -->
+  <section class="hero">
+    <!-- Video Layer 1: City Skyline (Dayton stand-in) -->
+    <div class="hero-video-layer visible" id="videoLayer1">
+      <video id="vid1" autoplay muted loop playsinline preload="auto" title="Dayton Ohio Skyline">
+        <source src="https://videos.pexels.com/video-files/32258501/13757353_1920_1080_50fps.mp4" type="video/mp4">
+      </video>
+    </div>
+    <!-- Video Layer 2: Orchestra Performance -->
+    <div class="hero-video-layer hidden" id="videoLayer2">
+      <video id="vid2" autoplay muted loop playsinline preload="auto" title="Orchestra Performance">
+        <source src="https://videos.pexels.com/video-files/7097492/7097492-hd_2048_1080_25fps.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-overlay"></div>
+    <div class="hero-progress" id="heroProgress"></div>
+    <div class="hero-video-label" id="heroVideoLabel">Dayton, Ohio</div>
+
+    <div class="hero-content">
+      <div class="hero-label">Miami Valley Symphony Orchestra — Dayton, Ohio</div>
+      <h1 class="hero-title">Where Music<br>Becomes <em>Alive</em></h1>
+      <div class="hero-line"></div>
+      <p class="hero-sub">Seventy musicians. One shared purpose. Experience the transformative power of live orchestral performance.</p>
+      <div class="hero-btns">
+        <a href="#" onclick="go('performances')" class="btn btn-crimson btn-arrow">View Concerts</a>
+        <a href="#" onclick="go('support')" class="btn btn-outline-light">Support the Orchestra</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><span>Scroll</span><div class="sline"></div></div>
+  </section>
+
+  <!-- UPCOMING CONCERTS (LIGHT) -->
+  <section class="light-section" style="padding-bottom:4rem;">
+    <div class="container">
+      <div class="label rv">Upcoming Events</div>
+      <h2 class="heading rv" style="margin-bottom:2.5rem;">What's <em>Next</em></h2>
+      <div class="events-grid rv">
+        <div class="event-card">
+          <div class="event-card-img"><div class="event-icon">𝄞</div></div>
+          <div class="event-card-body">
+            <div class="event-card-date">Sat, March 28, 2026</div>
+            <h3 class="event-card-title">John Williams vs. Hans Zimmer</h3>
+            <div class="event-card-venue">Venue TBA</div>
+            <a href="#" class="btn btn-crimson">View Event</a>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-card-img" style="background-image: repeating-linear-gradient(0deg, rgba(250, 246, 240, 0.08) 0px, rgba(250, 246, 240, 0.08) 1px, transparent 1px, transparent 12px), linear-gradient(135deg, #8B6F47, #5A6340); background-size: 100% 60px, 100% 100%; background-position: 0 0, 0 0;"><div class="event-icon">𝄢</div></div>
+          <div class="event-card-body">
+            <div class="event-card-date">2026–2027 Season</div>
+            <h3 class="event-card-title">Season Announcement Coming Soon</h3>
+            <div class="event-card-venue">Stay Tuned</div>
+            <a href="#" class="btn btn-outline-dark">Join Mailing List</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED CONCERT (DARK CINEMATIC) -->
+  <div class="featured-banner staff-bg">
+    <div class="featured-inner rv">
+      <div class="featured-vis">
+        <div class="featured-vis-text">
+          <div class="composer">John Williams</div>
+          <div class="vs-mark">vs.</div>
+          <div class="composer">Hans Zimmer</div>
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-tag">Next Performance</div>
+        <h2 class="featured-title">The Battle of <em>Cinema's</em> Greatest Composers</h2>
+        <div class="featured-date-text">Saturday, <strong>March 28, 2026</strong></div>
+        <p class="featured-desc">Two titans of film music. One extraordinary evening. Hear the most iconic scores in cinema history performed live — and decide for yourself who reigns supreme.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="#" class="btn btn-crimson btn-arrow">Get Tickets</a>
+          <a href="#" onclick="go('performances')" class="btn btn-outline-light">Full Season</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS (DARK) -->
+  <div class="dark-section staff-bg" style="padding:0;">
+    <div class="container">
+      <div class="stats-row rv">
+        <div class="stat-item"><div class="stat-num">36</div><div class="stat-text">Years of Music</div></div>
+        <div class="stat-item"><div class="stat-num">70+</div><div class="stat-text">Musicians</div></div>
+        <div class="stat-item"><div class="stat-num">100%</div><div class="stat-text">Volunteer</div></div>
+        <div class="stat-item"><div class="stat-num">∞</div><div class="stat-text">Passion</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION (LIGHT) -->
+  <section class="cream-section">
+    <div class="container">
+      <div class="split">
+        <div class="rv">
+          <div class="label">Our Purpose</div>
+          <h2 class="heading">Entertain. Enrich.<br><em>Inspire.</em></h2>
+          <div class="prose" style="margin-top:1.5rem;">
+            <p>The Miami Valley Symphony Orchestra brings together accomplished musicians from across the region to deliver performances that move, challenge, and inspire. As a 501(c)(3) nonprofit, every note is driven by passion — not profit.</p>
+            <p>Our mission is to advance the knowledge and appreciation of orchestral music, making it accessible and alive for everyone in the Miami Valley.</p>
+          </div>
+          <a href="#" onclick="go('about')" class="btn btn-dark" style="margin-top:1.5rem;">Our Story</a>
+        </div>
+        <div class="visual-box visual-box-light rv">
+          <div class="visual-box-bg"></div>
+          <div class="visual-box-wm">𝄞</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+     ═══════════════════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <div class="page-hero-light">
+    <div class="container-sm">
+      <div class="ph-label">Who We Are</div>
+      <h1 class="ph-title">The Miami Valley Symphony Orchestra</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">Dedicated to advancing orchestral music through passionate performance and community engagement.</p>
+    </div>
+  </div>
+
+  <section class="cream-section">
+    <div class="container">
+      <div class="split">
+        <div class="rv">
+          <h2 class="heading">Our <em>Mission</em></h2>
+          <div class="prose">
+            <p>Founded in 1990, the Miami Valley Symphony Orchestra has established itself as a beacon of classical music in Ohio. We are driven by a simple but profound mission: to advance the knowledge and appreciation of orchestral music through passionate performance and meaningful community engagement.</p>
+            <p>With seventy accomplished volunteer musicians, we deliver world-class performances that celebrate the timeless power of the symphony while remaining accessible and relevant to contemporary audiences.</p>
+          </div>
+        </div>
+        <div class="visual-box visual-box-light rv">
+          <div class="visual-box-bg"></div>
+          <div class="visual-box-wm">𝄞</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="light-section">
+    <div class="container">
+      <div class="label rv">Board Leadership</div>
+      <h2 class="heading rv">Our <em>Board</em></h2>
+      <div class="profiles rv">
+        <div class="profile-card">
+          <div class="profile-init">JM</div>
+          <h3>Jonathan Mitchell</h3>
+          <div class="role">Board Chair</div>
+          <p>Visionary leader driving our strategic growth and community vision.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-init">SD</div>
+          <h3>Sarah Dawson</h3>
+          <div class="role">Vice Chair</div>
+          <p>Passionate advocate for arts education and community outreach.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-init">MC</div>
+          <h3>Michael Chen</h3>
+          <div class="role">Treasurer</div>
+          <p>Financial steward ensuring sustainable excellence and growth.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-init">LR</div>
+          <h3>Laura Rodriguez</h3>
+          <div class="role">Secretary</div>
+          <p>Dedicated to transparent governance and member engagement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cream-section">
+    <div class="container">
+      <div class="label rv">Why MVSO?</div>
+      <h2 class="heading rv" style="margin-bottom:3rem;">What Sets Us <em>Apart</em></h2>
+      <div class="info-grid rv">
+        <div class="info-card">
+          <h3>All-Volunteer Excellence</h3>
+          <ul>
+            <li>70+ accomplished musicians</li>
+            <li>Zero ego, pure passion</li>
+            <li>Community-focused mission</li>
+            <li>Inclusive and collaborative</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Innovative Programming</h3>
+          <ul>
+            <li>Classic masterworks reimagined</li>
+            <li>Film scores and modern works</li>
+            <li>Educational concerts</li>
+            <li>Community partnerships</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CONDUCTORS
+     ═══════════════════════════════════════════ -->
+<div id="page-conductors" class="page">
+
+  <div class="page-hero-light">
+    <div class="container-sm">
+      <div class="ph-label">Leadership</div>
+      <h1 class="ph-title">Our Conductors</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">Visionary leaders guiding the orchestra with artistry and passion.</p>
+    </div>
+  </div>
+
+  <section class="light-section">
+    <div class="container">
+      <div class="profiles rv">
+        <div class="profile-card">
+          <div class="profile-init">DW</div>
+          <h3>Dr. David Wilson</h3>
+          <div class="role">Music Director</div>
+          <p>Renowned conductor with 20+ years leading prestigious ensembles. Known for dynamic interpretations of classical masterworks and championing contemporary composers.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-init">EC</div>
+          <h3>Elena Castellano</h3>
+          <div class="role">Associate Conductor</div>
+          <p>Emerging talent with deep roots in the Dayton music community. Specializes in bringing fresh energy to beloved classics and developing emerging musicians.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-init">RK</div>
+          <h3>Robert Kaufman</h3>
+          <div class="role">Guest Conductor</div>
+          <p>Internationally acclaimed conductor bringing world-class expertise to special concerts. Collaborator with leading orchestras across North America.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-init">JB</div>
+          <h3>Joyce Bennett</h3>
+          <div class="role">Youth Orchestra Director</div>
+          <p>Passionate educator dedicated to developing the next generation of orchestral musicians and fostering love of classical music in young people.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:2rem 0; text-align:center; background:var(--parchment);">
+    <div class="divider-note-sym">
+      <span class="note-sym">♩</span>
+      <span class="note-sym">♪</span>
+      <span class="note-sym">♫</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MUSICIANS
+     ═══════════════════════════════════════════ -->
+<div id="page-musicians" class="page">
+
+  <div class="page-hero-light">
+    <div class="container-sm">
+      <div class="ph-label">The Ensemble</div>
+      <h1 class="ph-title">Our Musicians</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">Seventy exceptional musicians unified by passion and purpose.</p>
+    </div>
+  </div>
+
+  <section class="light-section">
+    <div class="container">
+      <div class="inst-group rv">
+        <h3>Violins</h3>
+        <div class="members">
+          <div class="member">Sarah Mitchell</div>
+          <div class="member">James Chen</div>
+          <div class="member">Rebecca Turner</div>
+          <div class="member">Michael Rodriguez</div>
+          <div class="member">Angela Kowalski</div>
+          <div class="member">David Park</div>
+          <div class="member">Lisa Hoffmann</div>
+          <div class="member">Thomas Wagner</div>
+          <div class="member">Maria Santos</div>
+          <div class="member">Christopher Bell</div>
+        </div>
+      </div>
+      <div class="inst-group rv">
+        <h3>Violas</h3>
+        <div class="members">
+          <div class="member">Jennifer Ashley</div>
+          <div class="member">Daniel Foster</div>
+          <div class="member">Elizabeth Morris</div>
+          <div class="member">Robert Green</div>
+          <div class="member">Katherine Price</div>
+          <div class="member">James Harrison</div>
+        </div>
+      </div>
+      <div class="inst-group rv">
+        <h3>Cellos</h3>
+        <div class="members">
+          <div class="member">Amanda Watson</div>
+          <div class="member">Gregory Young</div>
+          <div class="member">Rachel Stone</div>
+          <div class="member">Marcus Johnson</div>
+          <div class="member">Sophie Laurent</div>
+        </div>
+      </div>
+      <div class="inst-group rv">
+        <h3>Basses</h3>
+        <div class="members">
+          <div class="member">Alexander Brown</div>
+          <div class="member">Victoria Cross</div>
+          <div class="member">Nicholas Davies</div>
+        </div>
+      </div>
+      <div class="inst-group rv">
+        <h3>Woodwinds</h3>
+        <div class="members">
+          <div class="member">Emily Peterson <span class="tag">Flute</span></div>
+          <div class="member">Timothy Brooks <span class="tag">Oboe</span></div>
+          <div class="member">Katherine Davis <span class="tag">Clarinet</span></div>
+          <div class="member">Brandon Mills <span class="tag">Bassoon</span></div>
+        </div>
+      </div>
+      <div class="inst-group rv">
+        <h3>Brass</h3>
+        <div class="members">
+          <div class="member">Patrick Lewis <span class="tag">French Horn</span></div>
+          <div class="member">Samuel Cooper <span class="tag">Trumpet</span></div>
+          <div class="member">Richard Morrison <span class="tag">Trombone</span></div>
+          <div class="member">Charles Hughes <span class="tag">Tuba</span></div>
+        </div>
+      </div>
+      <div class="inst-group rv">
+        <h3>Percussion</h3>
+        <div class="members">
+          <div class="member">Nathan White</div>
+          <div class="member">Jessica Palmer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HISTORY
+     ═══════════════════════════════════════════ -->
+<div id="page-history" class="page">
+
+  <div class="page-hero-light">
+    <div class="container-sm">
+      <div class="ph-label">Our Journey</div>
+      <h1 class="ph-title">Our History</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">From humble beginnings to a cornerstone of Dayton's cultural landscape.</p>
+    </div>
+  </div>
+
+  <section class="light-section">
+    <div class="container-sm">
+      <div class="timeline rv">
+        <div class="tl-item">
+          <div class="tl-year">1990</div>
+          <p class="tl-text"><strong>The Founding</strong> — Founded by a group of passionate musicians with a vision to bring world-class orchestral music to the Miami Valley. The first concert draws 200 attendees to a small community center.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1995</div>
+          <p class="tl-text"><strong>Growing Pains</strong> — Ensemble expands to 40 musicians. First collaboration with Dayton schools launches educational programming that becomes a cornerstone of our mission.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2002</div>
+          <p class="tl-text"><strong>Professional Recognition</strong> — Performances at the Schuster Performing Arts Center begin. Dr. David Wilson joins as Music Director, bringing national prominence and expanded ambitions.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2010</div>
+          <p class="tl-text"><strong>Milestone: 20 Years</strong> — MVSO celebrates two decades of service with record attendance and expanded repertoire. Community support reaches all-time high.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2018</div>
+          <p class="tl-text"><strong>Youth Orchestra Launch</strong> — MVSO Youth Orchestra founded to develop young musicians and build the next generation of classical music advocates. Rapid growth exceeds expectations.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2024</div>
+          <p class="tl-text"><strong>Digital Innovation</strong> — Launch of streaming concerts and virtual performance series. MVSO reaches audiences far beyond Dayton, expanding our mission globally.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2026</div>
+          <p class="tl-text"><strong>The Future</strong> — MVSO continues to thrive with 70+ musicians, innovative programming, and unwavering commitment to making orchestral music accessible to all.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:2rem 0; text-align:center; background:var(--cream);">
+    <div class="divider-note-sym">
+      <span class="note-sym">♩</span>
+      <span class="note-sym">♪</span>
+      <span class="note-sym">♫</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PERFORMANCES
+     ═══════════════════════════════════════════ -->
+<div id="page-performances" class="page">
+
+  <div class="page-hero-light">
+    <div class="container-sm">
+      <div class="ph-label">Coming Soon</div>
+      <h1 class="ph-title">Upcoming Concerts</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">Mark your calendar for extraordinary musical experiences.</p>
+    </div>
+  </div>
+
+  <section class="light-section">
+    <div class="container">
+      <div class="concert-row rv">
+        <div class="c-date">
+          <div class="month">March</div>
+          <div class="day">28</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="c-info">
+          <h3>John Williams vs. Hans Zimmer</h3>
+          <p>An epic showdown of cinematic masterworks. Two legends, one unforgettable night.</p>
+          <div class="venue">Schuster Performing Arts Center</div>
+        </div>
+        <a href="#" class="badge badge-crimson">Get Tickets</a>
+      </div>
+
+      <div class="concert-row rv">
+        <div class="c-date">
+          <div class="month">April</div>
+          <div class="day">12</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="c-info">
+          <h3>Beethoven Explored</h3>
+          <p>A deep dive into the symphonies of Ludwig van Beethoven, performed with passion and precision.</p>
+          <div class="venue">Schuster Performing Arts Center</div>
+        </div>
+        <a href="#" class="badge badge-dim">Coming Soon</a>
+      </div>
+
+      <div class="concert-row rv">
+        <div class="c-date">
+          <div class="month">May</div>
+          <div class="day">16</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="c-info">
+          <h3>Spring Pops Concert</h3>
+          <p>A celebration of light classical favorites, pop arrangements, and contemporary hits.</p>
+          <div class="venue">RiverScape MetroParks</div>
+        </div>
+        <a href="#" class="badge badge-dim">Coming Soon</a>
+      </div>
+
+      <div class="concert-row rv">
+        <div class="c-date">
+          <div class="month">June</div>
+          <div class="day">21</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="c-info">
+          <h3>Summer Classics Festival</h3>
+          <p>A multi-week celebration of beloved classics, special guests, and unique interpretations.</p>
+          <div class="venue">TBA</div>
+        </div>
+        <a href="#" class="badge badge-dim">Coming Soon</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     AUDITIONS
+     ═══════════════════════════════════════════ -->
+<div id="page-auditions" class="page">
+
+  <div class="page-hero-light">
+    <div class="container-sm">
+      <div class="ph-label">Join Us</div>
+      <h1 class="ph-title">Auditions & Volunteering</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">Are you ready to become part of something special?</p>
+    </div>
+  </div>
+
+  <section class="light-section">
+    <div class="container">
+      <div class="split rv">
+        <div>
+          <h2 class="heading">Musician Auditions</h2>
+          <div class="prose">
+            <p>The Miami Valley Symphony Orchestra welcomes accomplished musicians from all backgrounds. Whether you're a lifelong orchestral performer or returning to music after a hiatus, we invite you to audition.</p>
+            <p><strong>Audition Requirements:</strong> Bring prepared orchestral excerpts from our repertoire, demonstrate strong ensemble skills, and show passion for collaborative music-making. We hold auditions annually in spring and by appointment throughout the season.</p>
+          </div>
+          <a href="#" class="btn btn-crimson btn-arrow">Audition Info</a>
+        </div>
+        <div class="visual-box visual-box-light rv">
+          <div class="visual-box-bg"></div>
+          <div class="visual-box-wm">𝄞</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cream-section">
+    <div class="container">
+      <div class="label rv">Other Ways to Help</div>
+      <h2 class="heading rv" style="margin-bottom:3rem;">Volunteer <em>With Us</em></h2>
+      <div class="info-grid rv">
+        <div class="info-card">
+          <h3>Behind the Scenes</h3>
+          <ul>
+            <li>Concert production support</li>
+            <li>Marketing and promotions</li>
+            <li>Administrative assistance</li>
+            <li>Fundraising coordination</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Community Engagement</h3>
+          <ul>
+            <li>Educational program facilitation</li>
+            <li>School & outreach partnerships</li>
+            <li>Social media & communications</li>
+            <li>Community relations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     YOUTH
+     ═══════════════════════════════════════════ -->
+<div id="page-youth" class="page">
+
+  <div class="page-hero-light">
+    <div class="container-sm">
+      <div class="ph-label">Next Generation</div>
+      <h1 class="ph-title">Youth Orchestra</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">Developing young musicians and fostering lifelong love of classical music.</p>
+    </div>
+  </div>
+
+  <section class="light-section">
+    <div class="container">
+      <div class="split rv">
+        <div>
+          <h2 class="heading">MVSO Youth <em>Orchestra</em></h2>
+          <div class="prose">
+            <p>Founded in 2018, the MVSO Youth Orchestra provides young musicians ages 12-18 with professional training, performance opportunities, and mentorship from accomplished adult musicians. It's more than an ensemble — it's a community of passionate young artists dedicated to excellence.</p>
+            <p>Our youth musicians perform multiple concerts per season, participate in educational workshops, and collaborate with the main MVSO. Many of our youth orchestra alumni continue in music at the college level and beyond.</p>
+          </div>
+          <a href="#" class="btn btn-dark" style="margin-top:1.5rem;">Learn More</a>
+        </div>
+        <div class="visual-box visual-box-light rv">
+          <div class="visual-box-bg"></div>
+          <div class="visual-box-wm">𝄞</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cream-section">
+    <div class="container">
+      <div class="label rv">Program Details</div>
+      <h2 class="heading rv" style="margin-bottom:3rem;">Everything You <em>Need</em></h2>
+      <div class="info-grid rv">
+        <div class="info-card">
+          <h3>Auditions & Enrollment</h3>
+          <ul>
+            <li>Open to ages 12-18</li>
+            <li>All instruments welcome</li>
+            <li>Audition required</li>
+            <li>Affordable tuition options</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Rehearsal Schedule</h3>
+          <ul>
+            <li>Weekly rehearsals: Thursdays 7-9 PM</li>
+            <li>Location: Schuster Center</li>
+            <li>3 concerts per season</li>
+            <li>Summer intensives available</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SUPPORT / DONATE
+     ═══════════════════════════════════════════ -->
+<div id="page-support" class="page">
+
+  <div class="page-hero-dark">
+    <div class="container-sm">
+      <div class="ph-label">Make an Impact</div>
+      <h1 class="ph-title">Support the Orchestra</h1>
+      <div class="ph-line"></div>
+      <p class="ph-sub">Your generosity fuels world-class performances and community music education.</p>
+    </div>
+  </div>
+
+  <section class="dark-section">
+    <div class="container">
+      <div class="label rv">Why Give?</div>
+      <h2 class="heading rv" style="margin-bottom:3rem;">Invest in <em>Music</em></h2>
+      <div class="prose rv" style="max-width:750px; margin:0 auto; text-align:center; margin-bottom:3rem;">
+        <p>Every ticket sale covers only part of our operating costs. As an all-volunteer ensemble, we rely on generous donations to fund rehearsal spaces, sheet music, guest artists, and educational programs. Your support directly enables us to continue our mission of bringing world-class orchestral music to the Miami Valley.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cream-section">
+    <div class="container">
+      <div class="label rv">Giving Levels</div>
+      <h2 class="heading rv" style="margin-bottom:3rem;">Choose Your <em>Impact</em></h2>
+      <div class="tiers rv">
+        <div class="tier">
+          <h3>Supporter</h3>
+          <div class="amount">$50</div>
+          <p>Annual gift that helps support our educational programs.</p>
+          <a href="#" class="btn btn-crimson" style="width:100%; justify-content:center;">Donate Now</a>
+        </div>
+        <div class="tier hl">
+          <h3>Patron</h3>
+          <div class="amount">$250</div>
+          <p>Leadership gift sustaining our artistic vision and excellence. (Most Popular)</p>
+          <a href="#" class="btn btn-crimson" style="width:100%; justify-content:center;">Donate Now</a>
+        </div>
+        <div class="tier">
+          <h3>Benefactor</h3>
+          <div class="amount">$500+</div>
+          <p>Transformative gift securing our future and expanding impact.</p>
+          <a href="#" class="btn btn-crimson" style="width:100%; justify-content:center;">Donate Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <div class="quote-block rv">
+        <blockquote>Music is the universal language that brings us together. By supporting MVSO, you're not just funding an orchestra — you're investing in the heart of our community.</blockquote>
+        <cite>— Dr. David Wilson, Music Director</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="light-section">
+    <div class="container">
+      <div class="label rv">Newsletter</div>
+      <h2 class="heading rv">Stay <em>Connected</em></h2>
+      <div class="prose rv" style="max-width:600px; margin:0 auto; text-align:center; margin-bottom:2rem;">
+        <p>Subscribe to our newsletter for concert updates, behind-the-scenes stories, and special announcements.</p>
+      </div>
+      <div class="mail-section staff-bg rv">
+        <form class="mail-form">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Musical Note Divider before Footer -->
+<div style="padding:3rem 0; text-align:center; background:var(--cream);">
+  <div class="divider-note-sym">
+    <span class="note-sym">♩</span>
+    <span class="note-sym">♪</span>
+    <span class="note-sym">♫</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>MVSO</h3>
+        <p>The Miami Valley Symphony Orchestra is a 501(c)(3) nonprofit dedicated to advancing orchestral music in Dayton, Ohio, through passionate performance and community engagement.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="#" onclick="go('about')">About MVSO</a>
+        <a href="#" onclick="go('conductors')">Conductors</a>
+        <a href="#" onclick="go('history')">History</a>
+        <a href="#" onclick="go('musicians')">Musicians</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#" onclick="go('performances')">Concerts</a>
+        <a href="#" onclick="go('youth')">Youth Orchestra</a>
+        <a href="#" onclick="go('auditions')">Join Us</a>
+        <a href="mailto:info@mvso.org">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#" onclick="go('support')">Donate</a>
+        <a href="#" onclick="go('support')">Become a Patron</a>
+        <a href="#">Volunteer</a>
+        <a href="#">Partner With Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Miami Valley Symphony Orchestra. All rights reserved.</p>
+      <div>
+        <a href="#">Privacy Policy</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// PAGE ROUTING & NAVIGATION
+// ════════════════════════════════════════════════════════════════
+
+const pages = [
+  'home', 'about', 'conductors', 'musicians', 'history',
+  'performances', 'auditions', 'youth', 'support'
+];
+
+function go(pageName) {
+  // Hide all
+  pages.forEach(p => {
+    const el = document.getElementById(`page-${p}`);
+    if (el) {
+      el.classList.remove('active', 'vis');
+    }
+  });
+
+  // Show selected
+  const pageEl = document.getElementById(`page-${pageName}`);
+  if (pageEl) {
+    pageEl.classList.add('active');
+    setTimeout(() => { pageEl.classList.add('vis'); }, 10);
+  }
+
+  // Update nav
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.remove('active');
+    if (a.dataset.page === pageName) a.classList.add('active');
+  });
+
+  // Close mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger.classList.contains('open')) {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  }
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+// Mobile menu toggle
+document.getElementById('hamburger')?.addEventListener('click', () => {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+// Scroll reveal
+function reveal() {
+  const reveals = document.querySelectorAll('.rv');
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    const elementVisible = 150;
+    if (elementTop < windowHeight - elementVisible) {
+      el.classList.add('vis');
+    }
+  });
+}
+window.addEventListener('scroll', reveal);
+reveal();
+
+// Video crossfade in hero
+let videoIndex = 0;
+const videos = ['vid1', 'vid2'];
+const videoLayers = ['videoLayer1', 'videoLayer2'];
+
+function cycleHeroVideo() {
+  videoIndex = (videoIndex + 1) % 2;
+  const nextIndex = (videoIndex + 1) % 2;
+
+  // Hide current, show next
+  document.getElementById(videoLayers[videoIndex]).classList.add('visible');
+  document.getElementById(videoLayers[nextIndex]).classList.remove('visible');
+  document.getElementById(videoLayers[videoIndex]).classList.remove('hidden');
+  document.getElementById(videoLayers[nextIndex]).classList.add('hidden');
+
+  // Update label
+  const label = videoIndex === 0 ? 'Dayton, Ohio' : 'Live Performance';
+  document.getElementById('heroVideoLabel').textContent = label;
+}
+
+setInterval(cycleHeroVideo, 12000);
+
+// Nav scrolled state
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  const isLight = document.querySelector('.page.active.vis .hero') !== null;
+
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+    nav.classList.remove('light-mode');
+  } else {
+    nav.classList.remove('scrolled');
+    if (isLight) nav.classList.add('light-mode');
+  }
+});
+
+// Hide loader after page loads
+window.addEventListener('load', () => {
+  document.getElementById('loader').classList.add('done');
+});
+
+// Fallback: hide loader after 2s
+setTimeout(() => {
+  document.getElementById('loader').classList.add('done');
+}, 2000);
+
+// Hero progress bar
+const heroProgress = document.getElementById('heroProgress');
+if (heroProgress) {
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 30;
+    if (progress > 100) progress = 100;
+    heroProgress.style.width = progress + '%';
+    if (progress === 100) {
+      setTimeout(() => { progress = 0; heroProgress.style.width = '0%'; }, 500);
+    }
+  }, 500);
+}
+</script>
+
+</body>
+</html>
