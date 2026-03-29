@@ -1129,10 +1129,10 @@ footer { background:var(--chocolate); border-top:1px solid rgba(198,93,59,.1); p
 
     <div class="hero-overlay"></div>
     <div class="hero-progress" id="heroProgress"></div>
-    <div class="hero-video-label" id="heroVideoLabel">Dayton, Ohio</div>
+    <div class="hero-video-label" id="heroVideoLabel">Live Performance</div>
 
     <div class="hero-content">
-      <div class="hero-label">Miami Valley Symphony Orchestra — Dayton, Ohio</div>
+      <div class="hero-label">Miami Valley Symphony Orchestra</div>
       <h1 class="hero-title">Where Music<br>Becomes <em>Alive</em></h1>
       <div class="hero-line"></div>
       <p class="hero-sub">Seventy musicians. One shared purpose. Experience the transformative power of live orchestral performance.</p>
@@ -1940,7 +1940,7 @@ function cycleHeroVideo() {
   document.getElementById(videoLayers[nextIndex]).classList.add('hidden');
 
   // Update label
-  const label = videoIndex === 0 ? 'Dayton, Ohio' : 'Live Performance';
+  const label = videoIndex === 0 ? 'Live Performance' : 'On Stage';
   document.getElementById('heroVideoLabel').textContent = label;
 }
 
